@@ -440,18 +440,18 @@
 
                             @auth
                                 <a href="{{ url('/dashboard') }}"
-                                    class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                    class="text-sm text-gray-700 dark:text-gray-500 underline custom-link">Dashboard</a>
                             @else
                                 <li>
                                     <a href="{{ route('login') }}"
-                                        class="text-sm text-gray-700 dark:text-gray-500 underline">Log
+                                        class="text-sm text-gray-700 dark:text-gray-500 underline custom-link">Log
                                         in</a>
                                 </li>
 
                                 @if (Route::has('register'))
                                     <li>
                                         <a href="{{ route('register') }}"
-                                            class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                                            class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline custom-link">Register</a>
                                     </li>
                                 @endif
                             @endauth
@@ -476,13 +476,14 @@
     </header>
     <!-- about -->
     <section id="about" class="section">
-        <div class="title">
+        <div class="title mt-3">
             <h2>about <span>us</span></h2>
         </div>
     </section>
+    <br>
     <!-- services -->
     <section id="services" class="section">
-        <div class="title">
+        <div class="title mt-3">
             <h2>our <span>services</span></h2>
         </div>
     </section>

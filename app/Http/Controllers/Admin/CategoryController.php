@@ -22,6 +22,7 @@ class CategoryController extends Controller
     {
         return view('admin.carrier.carrier_list');
     }
+
     //Direct admin Category-------------------------------------------------------------------
     public function category()
     {

@@ -71,7 +71,8 @@ html {
 }
 body {
   font-family: var(--ff-secondary);
-  background: var(--clr-grey-10);
+  /* background: var(--clr-grey-10); */
+  background: var(--clr-white);
   color: var(--clr-grey-1);
   line-height: 1.5;
   font-size: 0.875rem;
@@ -408,9 +409,7 @@ header {
 }
 #about,
 #services,
-#tours {
-  height: 80vh;
-}
+
 #services {
   background: var(--clr-white);
 }

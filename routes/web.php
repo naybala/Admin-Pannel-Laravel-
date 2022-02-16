@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
+Route::get('< Back', function () {
+    return view('welcome');
+});
 Route::get('/', function () {
     return view('welcome');
 });

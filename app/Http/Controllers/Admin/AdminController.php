@@ -18,6 +18,21 @@ class AdminController extends Controller
         $userData = User::where('id', $id)->first();
         return view('admin.profile.index')->with(['user' => $userData]);
     }
+
+       //Logout Confirm-------------------------------------------------------------------
+       public function logoutConfirm()
+       {
+        return view('auth.logout-confirm');
+       }
+        //Logout Cancel-------------------------------------------------------------------
+        public function logoutCancel()
+        {
+            $id = auth()->user()->id;
+            $userData = User::where('id', $id)->first();
+            return view('admin.profile.index')->with(['user' => $userData]);
+
+        }
+
     //update Info Admin
     public function updateInfo(Request $request, $id)
     {

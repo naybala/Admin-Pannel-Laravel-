@@ -463,7 +463,7 @@
         <!-- banner -->
         <div class="banner">
             <div class="container">
-                <h1>Gym Member Test project</h1>
+                <h1>Test project</h1>
                 <p>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas eos
                     neque sunt in? Id, necessitatibus quos quisquam distinctio

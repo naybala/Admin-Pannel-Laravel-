@@ -35,6 +35,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     //Admin Route Group
     Route::get('profile', 'AdminController@profile')->name('admin#profile');
+    Route::get('logoutCancel', 'AdminController@logoutCancel')->name('admin#logoutCancel');
+    Route::get('logoutConfirm', 'AdminController@logoutConfirm')->name('admin#logoutConfirm');
     Route::post('updateInfo/{id}', 'AdminController@updateInfo')->name('admin#updateInfo');
     Route::get('passwordChangePage/{id}', 'AdminController@passwordChangePage')->name('admin#passwordChangePage');
     Route::post('passwordChange', 'AdminController@changePassword')->name('admin#changePassword');

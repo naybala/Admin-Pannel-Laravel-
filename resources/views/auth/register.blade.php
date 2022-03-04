@@ -1,9 +1,11 @@
 <x-guest-layout>
     <x-jet-authentication-card>
-        <x-slot name="logo">
+        {{-- <x-slot name="logo">
             <x-jet-authentication-card-logo />
-        </x-slot>
-
+        </x-slot> --}}
+        <div class=" sm:justify-center items-center pt-6 sm:pt-0 text-center">
+            <h5>Register Here</h5>
+        </div>
         <x-jet-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('register') }}">

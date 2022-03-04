@@ -43,9 +43,9 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Sithu</td>
+                                            <td>Nay Ba La</td>
                                             <td>Seafood Pizza</td>
-                                            <td>Mg Kyaw Kyaw</td>
+                                            <td>Mg Ba La</td>
                                             <td>Card</td>
                                             <td>2/2/2021</td>
                                             <td>

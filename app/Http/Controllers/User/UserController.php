@@ -18,6 +18,16 @@ class UserController extends Controller
         $category = Category::get();
         return view('user.user_home')->with(['pizza' => $data, 'category' => $category]);
     }
+     //direct to Logout Confirm page
+     public function logoutConfirm()
+     {
+        return view('user.logoutConfirm');
+     }
+      //Logout Cancel
+      public function logoutCancel()
+      {
+        return view('user.user_home');
+      }
     //Send Contact
     public function sendContact(Request $request)
     {

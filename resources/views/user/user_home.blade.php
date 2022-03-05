@@ -1,137 +1,161 @@
-@extends('user.layout.appUser')
-@section('content')
-    <!-- Page Content-->
-    <div class="container px-lg-5" id="home">
-        @if (Session::has('sendSuccess'))
-            <div class="alert alert-success alert-dismissible fade show mt-1" role="alert">
-                {{ Session::get('sendSuccess') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-        <!-- Heading Row-->
-        <div class="row gx-4 gx-lg-5 align-items-center my-2">
-            <div class=" col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" id="code-lab-pizza"
-                    src="https://images.pexels.com/photos/2741457/pexels-photo-2741457.jpeg?cs=srgb&dl=pexels-kei-photo-2741457.jpg&fm=jpg"
-                    alt="..." /></div>
-            <div class="col-lg-5">
-                <h1 class="font-weight-light">Bar Nyar Pizza</h1>
-                <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it,
-                    but it makes a great use of the standard Bootstrap core components. Feel free to use this template
-                    for any project you want!</p>
-                <a class="btn btn-primary" href="#!">Enjoy!</a>
-            </div>
-        </div>
-        <hr>
-        <!-- Content Row-->
-        <div class="d-flex justify-content-around" id="pizza">
-            <div class="col-3 me-5">
-                <div class="">
-                    <div class="py-2 text-center">
-                        <form class="d-flex m-5" action="{{ route('user#allSearch') }}" method="GET">
-                            @csrf
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                                name="allSearch">
-                            <button class="btn btn-outline-dark" type="submit">Search</button>
-                        </form>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-                        <div class="">
-                            <a href="{{ route('user#allPizzaList') }}" style="text-decoration: none"
-                                class="text-black">
-                                <div class="m-2 p-2">All</div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Laravel</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('main-page/css/main.css') }}">
+</head>
+
+<body class="antialiased">
+    <header id="home">
+        <!-- navbar -->
+        <nav id="nav">
+            <div class="nav-center">
+                <!-- nav header -->
+                <div class="nav-header">
+                    <img src="main-page/image/beard-ga7bd8baa5_640.png" class="logo" alt="logo" />
+                    <button class="nav-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <!-- links -->
+                <div class="links-container">
+                    <ul class="links">
+                        <li>
+                            <a href="#home" class="scroll-link custom-link">home</a>
+                        </li>
+                        <li>
+                            <a href="#about" class="scroll-link custom-link">about</a>
+                        </li>
+                        <li>
+                            <a href="#services" class="scroll-link custom-link">services</a>
+                        </li>
+                        <li>
+                            <a href="#services" class="scroll-link custom-link">Nay Ba La</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('user#logoutConfirm') }}" class="custom-link">
+                                Logout
                             </a>
-                            @foreach ($category as $item)
-                                <a href="{{ route('user#categoryPizzaList', $item->category_id) }}"
-                                    style="text-decoration: none" class="text-black">
-                                    <div class="m-2 p-2">{{ $item->category_name }}</div>
-                                </a>
-                            @endforeach
+                        </li>
+                        {{-- @if (Route::has('login'))
+                            @auth
+                                {{-- <a href="{{ url('/dashboard') }}"
+                                    class="text-sm text-gray-700 dark:text-gray-500 underline custom-link">Dashboard</a> --}}
 
-
-                        </div>
-                        <hr>
-                        <div class="text-center m-4 p-2">
-                            <h3 class="mb-3">Start Date - End Date</h3>
-
-                            <form>
-                                <input type="date" name="" id="" class="form-control"> -
-                                <input type="date" name="" id="" class="form-control">
-                            </form>
-                        </div>
-                        <hr>
-                        <div class="text-center m-4 p-2">
-                            <h3 class="mb-3">Min - Max Amount</h3>
-
-                            <form action="{{ route('user#minMaxSearch') }}" method="GET">
-                                @csrf
-                                <input type="number" name="minSearch" class="form-control" placeholder="minimum price">
-                                <br>
-                                <input type="number" name="maxSearch" class="form-control" placeholder="maximun price">
-                                <button class="btn btn-outline-dark mt-3" type="submit">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                    @endauth
+                    @endif --}}
+                </ul>
             </div>
-            <div class="mt-5">
-                <div class="row gx-4 gx-lg-5" id="pizza">
-                    @foreach ($pizza as $item)
-                        <div class="col-md-3 mb-4">
-                            <div class="card h-100 shadow-lg">
-                                <!-- Sale badge-->
-                                @if ($item->buy_one_get_one_status != 0)
-                                    <div class="badge bg-dark text-white position-absolute"
-                                        style="top: 0.5rem; right: 0.5rem">
-                                        Buy 1 Get 1</div>
-                                @endif
-                                <!-- Product image-->
-                                <img src="{{ asset('images/' . $item->image) }}" class=" img" id="pizza-image "
-                                    width="100%" height="60%">
-                                <!-- Product details-->
-                                <div class="card-body p-2">
-                                    <div class="text-center">
-                                        <!-- Product name-->
-                                        <h5 class="fw-bolder">{{ $item->pizza_name }}</h5>
-                                        <!-- Product price-->
-                                        <span class="text-muted">{{ $item->price }} mmk</span>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="btn btn-outline-dark mt-auto"
-                                            href="{{ route('user#detail', $item->pizza_id) }}">View
-                                            Detail
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+        </div>
+    </nav>
+    <!-- banner -->
+    <div class="banner">
+        <div class="container">
+            <h1>Test project</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas eos
+                neque sunt in? Id, necessitatibus quos quisquam distinctio
+                laudantium fugiat?
+            </p>
+            <a href="#about" class="scroll-link btn btn-white">Enjoy</a>
+        </div>
+    </div>
+</header>
+<!-- about -->
+<section id="about" class="section">
+    <div class="title mt-3">
+        <h2>about <span>us</span></h2>
+        <br><br><br>
+        <!-- about Section -->
+        <div class="container-fluid col-9 d-flex">
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="text-muted fst-italic">Services & Slaes</span>
+                    <h2>We Provides</h2>
+                    <p class="text-muted">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Cum deleniti ab nesciunt culpa in temporibus explicabo
+                        minima nam aperiam est pariatur aliquid, exercitationem
+                        impedit consequatur natus suscipit aut, dolores nulla.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Beatae quis magnam placeat, ab dolores dolore eligendi
+                        quam explicabo ipsum debitis perspiciatis in sequi
+                        aliquam. Eaque sed inventore natus voluptate ipsam.
+                    </p>
+
+                </div>
+                <div class="col-md-6">
+                    <img class="img-fluid rounded-2" src="main-page/image/gearIcon.gif" alt="">
                 </div>
             </div>
         </div>
+        <br>
+        <br>
+        <!-- about Section  End-->
     </div>
-    <hr>
-    <div class="text-center d-flex justify-content-center align-items-center" id="contact">
-        <div class="col-4 border shadow-sm ps-5 pt-5 pe-5 pb-2 mb-5">
-            <h3>Contact Us</h3>
 
-            <form action="{{ route('user#sendContact') }}" class="my-4" method="post">
-                @csrf
-                <input type="text" name="name" id="" class="form-control my-3" placeholder="Name"
-                    value="{{ old('name') }}">
-                @if ($errors->has('name'))
-                    <p class="text-danger">{{ $errors->first('name') }}</p>
-                @endif
-                <input type="email" name="email" id="" class="form-control my-3" placeholder="Email"
-                    value="{{ old('email') }}">
-                @if ($errors->has('email'))
-                    <p class="text-danger">{{ $errors->first('email') }}</p>
-                @endif
-                <textarea class="form-control my-3" id="exampleFormControlTextarea1" rows="3" placeholder="Message"
-                    name="message">{{ old('message') }}</textarea>
-                @if ($errors->has('message'))
-                    <p class="text-danger">{{ $errors->first('message') }}</p>
-                @endif
-                <button type="submit" class="btn btn-outline-dark">Send FeebBack</button>
-            </form>
+</section>
+<!-- services -->
+
+<section id="services" class="section">
+    <div class="title">
+        <br><br>
+        <h2>our <span>services</span></h2>
+        <!-- Service Section -->
+        <div class="container-fluid col-9 d-flex">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-up">
+                    <img class="img-fluid" src="main-page/image/computer_gif.gif" alt="">
+                </div>
+                <div class="col-md-6 mt-5">
+                    <span class="text-muted fst-italic">Sales & Services</span>
+                    <h2>We Will Give You</h2>
+                    <p class="text-muted" data-aos="fade-up">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Cum deleniti ab nesciunt culpa in temporibus explicabo
+                        minima nam aperiam est pariatur aliquid, exercitationem
+                        impedit consequatur natus suscipit aut, dolores nulla.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Beatae quis magnam placeat, ab dolores dolore eligendi
+                        quam explicabo ipsum debitis perspiciatis in sequi
+                        aliquam. Eaque sed inventore natus voluptate ipsam.
+                    </p>
+                </div>
+            </div>
         </div>
+        <br>
+        <br>
+        <!-- Service Section  End-->
     </div>
-@endsection
+</section>
+
+<!-- footer -->
+<footer class="section">
+    <p>
+        copyright &copy;
+        <span id="date"></span>. all rights reserved
+    </p>
+</footer>
+<a class="scroll-link top-link" href="#home">
+    <i class="fas fa-arrow-up"></i>
+</a>
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="{{ asset('main-page/js/main.js') }}"></script>
+
+</html>

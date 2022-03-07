@@ -77,7 +77,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
     //User Route Group
     Route::get('/', 'UserController@index')->name('user#index');
-    Route::get('logoutCancel', 'UserController@logoutCancel')->name('admin#logoutCancel');
+    Route::get('logoutCancel', 'UserController@logoutCancel')->name('user#logoutCancel');
     Route::get('logoutConfirm','UserController@logoutConfirm')->name('user#logoutConfirm');
     Route::get('detail/{id}', 'UserController@detail')->name('user#detail');
     Route::post('sendContact', 'UserController@sendContact')->name('user#sendContact');

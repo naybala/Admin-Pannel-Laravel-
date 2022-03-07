@@ -22,7 +22,7 @@
             </div>
             <div class="cart-footer border mt-5">
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('admin#logoutCancel') }}"><button class="btn btn-primary"
+                    <a href="{{ route('user#logoutCancel') }}"><button class="btn btn-primary"
                             type="button">Cancel</button></a>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf

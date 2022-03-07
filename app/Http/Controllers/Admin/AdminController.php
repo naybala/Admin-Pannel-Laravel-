@@ -29,6 +29,7 @@ class AdminController extends Controller
         {
             $id = auth()->user()->id;
             $userData = User::where('id', $id)->first();
+            // dd($userData['name']);
             return view('admin.profile.index')->with(['user' => $userData]);
 
         }

@@ -79,10 +79,11 @@ Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
     Route::get('/', 'UserController@index')->name('user#index');
     Route::get('logoutCancel', 'UserController@logoutCancel')->name('user#logoutCancel');
     Route::get('logoutConfirm','UserController@logoutConfirm')->name('user#logoutConfirm');
-    Route::get('detail/{id}', 'UserController@detail')->name('user#detail');
-    Route::post('sendContact', 'UserController@sendContact')->name('user#sendContact');
-    Route::get('categoryPizzaList/{id}', 'UserController@categoryPizzaList')->name('user#categoryPizzaList');
-    Route::get('allPizzaList', 'UserController@allPizzaList')->name('user#allPizzaList');
-    Route::get('search/all', 'UserController@allSearch')->name('user#allSearch');
-    Route::get('search/minMax', 'UserController@minMaxSearch')->name('user#minMaxSearch');
 });
+
+// Route::get('detail/{id}', 'UserController@detail')->name('user#detail');
+//     Route::post('sendContact', 'UserController@sendContact')->name('user#sendContact');
+//     Route::get('categoryPizzaList/{id}', 'UserController@categoryPizzaList')->name('user#categoryPizzaList');
+//     Route::get('allPizzaList', 'UserController@allPizzaList')->name('user#allPizzaList');
+//     Route::get('search/all', 'UserController@allSearch')->name('user#allSearch');
+//     Route::get('search/minMax', 'UserController@minMaxSearch')->name('user#minMaxSearch');

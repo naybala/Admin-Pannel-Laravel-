@@ -101,7 +101,7 @@
             </div>
         </aside>
 
-        @yield('content');
+        @yield('content')
         </section>
     </div>
 

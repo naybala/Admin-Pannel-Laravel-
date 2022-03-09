@@ -35,7 +35,7 @@
                                 </h3>
                                 <h3 class="card-title ml-5">
                                     <button class="btn btn-sm btn-outline-dark">Total
-                                        Count - {{ $category_list->total() }}</button>
+                                        Count = {{ $category_list->total() }}</button>
                                 </h3>
                                 <div class="card-tools">
                                     <form action="{{ route('admin#searchCategory') }}" method="get">

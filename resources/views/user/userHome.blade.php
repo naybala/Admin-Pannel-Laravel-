@@ -80,7 +80,8 @@
                         <h2>Caegories Type</h2>
                         <div class="container mb-5">
                             @foreach ($category as $item)
-                                <a href="" class="fs-4 text-black">
+                                <a href="{{ route('user#categoryPizzaList', $item->category_id) }}"
+                                    class="fs-4 text-black">
                                     <span>- {{ $item->category_name }}</span>
                                 </a>
                                 <br>
@@ -104,8 +105,20 @@
             <br>
             <!-- Product Section -->
             <div class="container-fluid col-9">
-
-
+                <form action="{{ route('user#allSearch') }}" method="get">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label">Search</label>
+                        <div class="row">
+                            <div class="col-sm-8 mb-1">
+                                <input type="text" class="form-control" name="search">
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn">Enter</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
                 <div class="row">
                     @foreach ($product as $item)
                         <div class="col-md-6  mb-3">

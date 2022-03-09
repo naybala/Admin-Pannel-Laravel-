@@ -4,19 +4,14 @@ namespace App\Http\Controllers\User;
 
 use App\Models\Pizza;
 use App\Models\Category;
-// use App\Models\Contact;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     //direct Route User Page
     public function index()
     {
-        // $data = Pizza::where('publish_status', 1)->limit(12)->get();
-        // return view('user.user_home')->with(['pizza' => $data, 'category' => $category]);
         $category = Category::limit(10)->get();
         $product = Pizza::select("*")
                         ->leftJoin('categories','pizzas.category_id','=','categories.category_id')
@@ -39,6 +34,41 @@ class UserController extends Controller
                         ->get();
         return view('user.userHome')->with(['category' => $category,'product'=>$product]);
       }
+
+      //Category Pizza List All
+       public function categoryPizzaList($id)
+     {
+        $product = Category::where('category_id', $id)->first();
+        $data = Pizza::where('category_id', $id)->get();
+        $relatedProduct = Pizza::get();
+        $countData = count($data);
+        return view('user.category_pizza_List.categoryPizzaList')->with(['categoryPizza' => $data,'countData' => $countData,'categoryType' => $product,'relatedProduct'=>$relatedProduct]);
+
+     }
+     //All Search
+    public function allSearch(Request $request)
+    {
+         //Start Error from Here
+        //  dd($request->all()['search']);
+       if($request->all()['search']!= null){
+                $data = Pizza::where('pizza_name', 'like', '%' . $request->search . '%')
+                ->leftJoin('categories','pizzas.category_id','=','categories.category_id')
+                ->where('publish_status',1)
+                ->paginate(6);
+                $data->appends($request->all());
+                $countData = count($data);
+        }else{
+            $countData = 0;
+            $data = Pizza::where('pizza_name', 'like', '%' . $request->search . '%')->paginate(6);
+        }
+        $relatedProduct = Pizza::select("*")
+                        ->leftJoin('categories','pizzas.category_id','=','categories.category_id')
+                        ->where('publish_status',1)
+                        ->orderBy('pizza_name', 'asc')
+                        ->get();
+         return view('user.pizza.pizzaListSearch')->with(['pizza' => $data,'countData'=>$countData,'relatedProduct'=>$relatedProduct]);
+
+    }
 
 }
 

@@ -36,7 +36,7 @@
                                 </h3>
                                 <h3 class="card-title ml-5">
                                     <button class="btn btn-sm btn-outline-dark">Total
-                                        Count - {{ $pizza->total() }}</button>
+                                        Count = {{ $pizza->total() }}</button>
                                 </h3>
 
                                 <div class="card-tools">
@@ -75,9 +75,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (@$pizza1['pizza_id'] == null)
+                                        @if ($pizza1 == '0')
                                             <tr>
-                                                <td colspan="11" class="text-muted">
+                                                <td colspan="11" class="text-danger">
                                                     There is no Data
                                                 </td>
                                             </tr>

@@ -92,11 +92,20 @@ class CategoryController extends Controller
     //search Category----------------------------------------------------------------------------
     public function searchCategory(Request $request)
     {
-        // dd($request->table_search);
-        $data = Category::where('category_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
-        $data->appends($request->all());
-        // dd($data->toArray());
-        return view('admin.category.category_list')->with(['category_list' => $data]);
+        if($request->all()['tableSearch']!= null){
+
+            $data = Category::where('category_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
+            $data->appends($request->all());
+            $data1 = count($data);
+
+        }else{
+
+            $data = Category::where('category_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
+            $data1 = 0;
+
+        }
+        // dd($data1,$data);
+        return view('admin.category.category_list')->with(['category_list'=>$data,'category1'=>$data1]);
     }
 
     //Category Item

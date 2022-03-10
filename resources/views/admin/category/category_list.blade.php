@@ -64,6 +64,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{-- @if ($category1 == '0')
+                                        <tr>
+                                            <td colspan="11" class="text-danger">
+                                                There is no Data
+                                            </td>
+                                        </tr>
+                                    @else --}}
                                     @foreach ($category_list as $item)
                                         <tr>
                                             <td>{{ $item->category_id }}</td>
@@ -91,6 +98,8 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    {{-- @endif --}}
+
                                 </tbody>
                             </table>
 

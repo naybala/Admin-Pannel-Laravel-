@@ -164,23 +164,7 @@ class PizzaController extends Controller
             $data1 = 0;
             $data = Pizza::where('pizza_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
         }
-
-
         $categoryData = Category::get();
         return view('admin.pizza.pizza_list')->with(['pizza' => $data, 'pizza1' => $data1, 'category' => $categoryData]);
     }
 }
-// if($request->all()['tableSearch']!= null){
-//     $data = Pizza::where('pizza_name', 'like', '%' . $request->tableSearch . '%')
-//     ->paginate(5);
-//     $data->appends($request->all());
-//     $countData = count($data);
-// }else{
-// $countData = 0;
-// $data = Pizza::where('pizza_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
-// }
-
-// $data = Pizza::where('pizza_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
-// $data->appends($request->all());
-// dd($data->toArray());
-// $data1 = Pizza::first();

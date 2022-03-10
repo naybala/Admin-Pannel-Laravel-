@@ -12,6 +12,11 @@
                         <div class="card shadow border border-0">
                             <div class="row p-2">
                                 <div class="col-md-6">
+                                    @if ($item->buy_one_get_one_status == 1)
+                                        <p class="text-white bg-dark d-inline rounded p-1">Buy 1 Get 1</p>
+                                    @else
+                                        <p class="text-white bg-dark d-inline rounded p-1">No Promo</p>
+                                    @endif
                                     <img class="img-fluid" src="{{ asset('images/' . $item->image) }}" alt="">
                                 </div>
                                 <div class="col-md-6">
@@ -19,7 +24,7 @@
                                     <br>
                                     <span class="text-danger">Price - {{ $item->price }} mmk</span>
                                     <br>
-                                    <span class="text-success">Category - {{ $item->category_name }}</span>
+                                    <span class="text-success">Category - {{ $categoryType->category_name }}</span>
                                     <p class="text-muted text-break word-wrap">
                                         Description - {{ $item->description }}
                                     </p>
@@ -65,6 +70,11 @@
                     <div class="card shadow border border-0">
                         <div class="row p-2">
                             <div class="col-md-6">
+                                @if ($item->buy_one_get_one_status == 1)
+                                    <p class="text-white bg-dark d-inline rounded p-1">Buy 1 Get 1</p>
+                                @else
+                                    <p class="text-white bg-dark d-inline rounded p-1">No Promo</p>
+                                @endif
                                 <img class="img-fluid" src="{{ asset('images/' . $item->image) }}" alt="">
                             </div>
                             <div class="col-md-6">

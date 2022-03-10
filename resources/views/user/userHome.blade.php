@@ -125,8 +125,15 @@
                             <div class="card shadow border border-0">
                                 <div class="row p-2">
                                     <div class="col-md-6">
+                                        @if ($item->buy_one_get_one_status == 1)
+                                            <p class="text-white bg-dark d-inline rounded p-1">Buy 1 Get 1</p>
+                                        @else
+                                            <p class="text-white bg-dark d-inline rounded p-1">No Promo</p>
+                                        @endif
+                                        <p class="mb-1"></p>
                                         <img class="img-fluid" src="{{ asset('images/' . $item->image) }}"
                                             alt="">
+
                                     </div>
                                     <div class="col-md-6 p-2">
                                         <span class="fs-5">Name - {{ $item->pizza_name }}</span>
@@ -140,7 +147,7 @@
                                         <br>
                                         <div class="d-flex justify-content-around">
                                             <button class="btn-xs btn-primary rounded p-1">View Details</button>
-                                            <button class="btn-xs btn-primary rounded p-1">Add to cart</button>
+                                            <button class="btn-xs btn-primary rounded p-1">Order Now</button>
                                         </div>
                                     </div>
                                 </div>

@@ -59,10 +59,18 @@
                             <img class="img-fluid" src="{{ asset('main-page/image/gearIcon.gif') }}" alt="">
                         </div>
                         <div class="col-md-6">
-                            <p>Name - </p>
-                            <p>Number of Pizza -</p>
-                            <p>Waiting Time - </p>
-                            <p>Total mmk - </p>
+                            <p class="d-inline">Name -
+                            <p class="d-inline text-danger">Sea Food 1</p>
+                            </p>
+                            <p class="d-inline">amount
+                            <p class="d-inline text-danger">3 + 3 <i class="fa-solid fa-pizza-slice"></i> (promo)</p>
+                            </p>
+                            <p class="d-inline">Waiting Time -
+                            <p class="d-inline text-danger"> 72 minutes</p>
+                            </p>
+                            <p class="d-inline">Total mmk -
+                            <p class="d-inline text-danger">3000 mmk</p>
+                            </p>
                         </div>
                     </div>
                     <p class="text-danger fs-5 mt-3">Choose Payment Type</p>
@@ -125,5 +133,6 @@
         </div>
     </div>
     <hr>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <script src="{{ asset('customer/js/orderConfirm.js') }}"></script>
 @endsection

@@ -40,10 +40,7 @@ class UserController extends Controller
      {
         $product = Category::where('category_id', $id)->first();
         $data = Pizza::where('category_id', $id)->get();
-        $relatedProduct = Pizza::leftJoin('categories','pizzas.category_id','=','categories.category_id')
-                                ->where('publish_status',1)
-                                ->orderBy('pizza_name', 'asc')
-                                ->get();
+        $relatedProduct = $this->relatedData();
         $countData = count($data);
         return view('user.category_pizza_List.categoryPizzaList')->with(['categoryPizza' => $data,'countData' => $countData,'categoryType' => $product,'relatedProduct'=>$relatedProduct]);
 
@@ -68,10 +65,18 @@ class UserController extends Controller
 
     }
     //Product Details
-    public function productDetail(){
-        return view('user.viewDetail');
+    public function productDetail($id){
+        $data = Pizza::where('pizza_id',$id)
+                ->leftJoin('categories','pizzas.category_id','=','categories.category_id')
+                ->first();
+        return view('user.viewDetail')->with(['productDetail'=>$data]);
     }
 
+    public function orderStore(Request $request,$id){
+        // dd($request->all());
+        return view('user.order');
+    }
+    //Related Product function
     private function relatedData(){
         $relatedProduct = Pizza::select("*")
         ->leftJoin('categories','pizzas.category_id','=','categories.category_id')

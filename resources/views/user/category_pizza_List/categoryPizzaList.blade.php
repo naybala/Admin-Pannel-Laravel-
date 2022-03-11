@@ -30,7 +30,10 @@
                                     </p>
                                     <br>
                                     <div class="d-flex justify-content-around">
-                                        <button class="btn-xs btn-primary rounded p-1">View Details</button>
+                                        <a href="{{ route('user#productDetail', $item->pizza_id) }}"><button
+                                                class="btn-xs btn-primary rounded p-1">View Details
+                                            </button>
+                                        </a>
                                         <button class="btn-xs btn-primary rounded p-1">Add to cart</button>
                                     </div>
                                 </div>
@@ -88,7 +91,10 @@
                                 </p>
                                 <br>
                                 <div class="d-flex justify-content-around">
-                                    <button class="btn-xs btn-primary rounded p-1">View Details</button>
+                                    <a href="{{ route('user#productDetail', $item->pizza_id) }}"><button
+                                            class="btn-xs btn-primary rounded p-1">View Details
+                                        </button>
+                                    </a>
                                     <button class="btn-xs btn-primary rounded p-1">Add to cart</button>
                                 </div>
                             </div>

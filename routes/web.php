@@ -81,7 +81,9 @@ Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
     Route::get('logoutConfirm','UserController@logoutConfirm')->name('user#logoutConfirm');
     Route::get('categoryPizzaList/{id}', 'UserController@categoryPizzaList')->name('user#categoryPizzaList');
     Route::get('search/all', 'UserController@allSearch')->name('user#allSearch');
-    Route::get('productDetail','UserController@productDetail')->name('user#productDetail');
+    Route::get('productDetail/{id}','UserController@productDetail')->name('user#productDetail');
+    Route::post('orderStore/{id}','UserController@orderStore')->name('user#orderStore');
+
 });
 
 // Route::get('detail/{id}', 'UserController@detail')->name('user#detail');

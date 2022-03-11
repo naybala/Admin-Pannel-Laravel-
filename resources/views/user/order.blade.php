@@ -23,27 +23,31 @@
             <div class="row p-2">
                 <div class="col-md-5 ms-2">
                     <h5 class="text-primary"> Your Information</h5>
-                    <label for="inputName" class="col-sm-2 col-form-label ms-2">Name
+                    <label for="inputName" class="col-sm-2 col-form-label">Name
                     </label>
                     <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control ms-2" value="" placeholder="Nay Ba La">
+                        <input type="text" name="name" class="form-control" value=""
+                            placeholder="{{ Auth()->user()->name }}">
                     </div>
-                    <label for="inputName" class="col-sm-2 col-form-label ms-2">Email
+                    <label for="inputName" class="col-sm-2 col-form-label">Email
                     </label>
                     <div class="col-sm-10">
-                        <input type="email" name="name" class="form-control ms-2" value="" placeholder="user@gmail.com">
+                        <input type="email" name="name" class="form-control" value=""
+                            placeholder="{{ Auth()->user()->email }}">
                     </div>
-                    <label for="inputName" class="col-sm-6 col-form-label ms-2">Phone Number
+                    <label for="inputName" class="col-sm-6 col-form-label">Phone Number
                     </label>
                     <div class="col-sm-10">
-                        <input type="number" name="name" class="form-control ms-2" value="" placeholder="09763684400">
+                        <input type="number" name="name" class="form-control" value=""
+                            placeholder="{{ Auth()->user()->phone }}">
                     </div>
-                    <label for="inputName" class="col-sm-6 col-form-label ms-2">Address
+                    <label for="inputName" class="col-sm-6 col-form-label">Address
                     </label>
                     <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control mb-2 ms-2" value="" placeholder="Zalun">
+                        <input type="text" name="name" class="form-control mb-2" value=""
+                            placeholder="{{ Auth()->user()->address }}">
                     </div>
-                    <div class="form-check mb-3 ms-2">
+                    <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" value="">
                         <label class="form-check-label" for="flexCheckChecked">
                             Shipping Address as the same billing address
@@ -56,17 +60,24 @@
                     <br>
                     <div class="row mt-5">
                         <div class="col-md-6">
-                            <img class="img-fluid" src="{{ asset('main-page/image/gearIcon.gif') }}" alt="">
+                            <img class="img-fluid" src="{{ asset('images/' . $data->image) }}" alt="">
                         </div>
                         <div class="col-md-6">
                             <p class="d-inline">Name -
-                            <p class="d-inline text-danger">Sea Food 1</p>
+                            <p class="d-inline text-danger">{{ $data->pizza_name }}</p>
                             </p>
                             <p class="d-inline">amount
-                            <p class="d-inline text-danger">3 + 3 <i class="fa-solid fa-pizza-slice"></i> (promo)</p>
+                            <p class="d-inline text-danger">{{ $amount }}
+                                <i class="fa-solid fa-pizza-slice"></i>
+                                @if ($data->buy_one_get_one_status == 1)
+                                    + {{ $amount }} <i class="fa-solid fa-pizza-slice"></i> (promo)
+                                @else
+                                @endif
+                            </p>
                             </p>
                             <p class="d-inline">Waiting Time -
-                            <p class="d-inline text-danger"> 72 minutes</p>
+                            <p class="d-inline text-danger"> {{ $data->waiting_time * $amount }} min <i
+                                    class="fa-solid fa-clock"></i></p>
                             </p>
                             <p class="d-inline">Total mmk -
                             <p class="d-inline text-danger">3000 mmk</p>
@@ -114,15 +125,14 @@
                     </div>
                 </div>
                 <div class="payment3 px-5 mb-2">
-                    <div class="row ">
-                        <div class="col-md-6">
-
-                        </div>
-                        <div class="col-md-6 border rounded p-2 text-center">
-                            <h5 class="text-primary">Transfer Admin Phone Number List</h5>
-                            <p class="text-danger">KBZ Pay Number - 09763684400</p>
-                            <p class="text-danger">Aya Pay Number - 09763684400</p>
-                            <p class="text-danger">Wave Pay Number - 09763684400</p>
+                    <div class="container col-md-6 mt-3">
+                        <div class="row ">
+                            <div class="col-md-12 border rounded p-2 text-center">
+                                <h5 class="text-primary">Transfer Admin Phone Number List</h5>
+                                <p class="text-danger">KBZ Pay Number - 09763684400</p>
+                                <p class="text-danger">Aya Pay Number - 09763684400</p>
+                                <p class="text-danger">Wave Pay Number - 09763684400</p>
+                            </div>
                         </div>
                     </div>
                 </div>

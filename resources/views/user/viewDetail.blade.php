@@ -54,7 +54,7 @@
                             @csrf
                             <button class="btn-sm btn-danger btnCon decrease" type="button">-</button>
                             <span id="value" class="fs-5 p-3 text-primary">1</span>
-                            <input id="value1" name="value1" value="1" type="hidden">
+                            <input id="value1" name="amount" value="1" type="hidden">
                             <button class="btn-sm btn-danger btnCon increase" type="button">+</button>
                     </div>
                     </p>
@@ -66,13 +66,13 @@
                     </p>
                     </p>
                 </div>
-                <div class="col-md-6 mt-5 ms-3">
+                <div class="col-md-6 mt-5">
                     @if ($productDetail->buy_one_get_one_status == 1)
-                        <p class="text-white bg-dark d-inline rounded p-1 position-absolute right-9">Buy 1 Get 1</p>
+                        <p class="text-white bg-dark d-inline rounded p-1 position-absolute ms-1 mt-1">Buy 1 Get 1</p>
                     @else
                         <p class="text-white bg-dark d-inline rounded p-1 position-absolute right-9">No Promo</p>
                     @endif
-                    <img class="img-fluid rounded" src="{{ asset('images/' . $productDetail->image) }}" alt="">
+                    <img class="img-fluid p-1" src="{{ asset('images/' . $productDetail->image) }}" alt="">
                     <br><br>
                     <div class="d-flex justify-content-around">
                         <a href="{{ route('user#index') }}">

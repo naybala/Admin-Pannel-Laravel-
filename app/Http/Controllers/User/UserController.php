@@ -73,8 +73,11 @@ class UserController extends Controller
     }
 
     public function orderStore(Request $request,$id){
-        // dd($request->all());
-        return view('user.order');
+        $amount = $request->all()['amount'];
+        $data =  Pizza::where('pizza_id',$id)
+        ->leftJoin('categories','pizzas.category_id','=','categories.category_id')
+        ->first();
+        return view('user.order')->with(['data'=>$data,'amount'=>$amount]);
     }
     //Related Product function
     private function relatedData(){

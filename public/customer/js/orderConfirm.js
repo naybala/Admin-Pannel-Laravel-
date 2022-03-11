@@ -1,4 +1,3 @@
-
 const radio1 = document.querySelector('#radio1');
 const radio2 = document.querySelector('#radio2');
 const radio3 = document.querySelector('#radio3');

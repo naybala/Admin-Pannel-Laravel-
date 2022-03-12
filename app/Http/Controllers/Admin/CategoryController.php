@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class CategoryController extends Controller
 {
 
-    //Direct admin OrderList-------------------------------------------------------------------
-    public function order()
-    {
-        return view('admin.order.order_list');
-    }
+
 
     //Direct admin CarrierList-------------------------------------------------------------------
     public function carrier()

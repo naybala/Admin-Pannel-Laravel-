@@ -6,6 +6,8 @@ use App\Models\Pizza;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -72,12 +74,65 @@ class UserController extends Controller
         return view('user.viewDetail')->with(['productDetail'=>$data]);
     }
 
-    public function orderStore(Request $request,$id){
+    public function confirmOrder(Request $request,$id){
         $amount = $request->all()['amount'];
         $data =  Pizza::where('pizza_id',$id)
         ->leftJoin('categories','pizzas.category_id','=','categories.category_id')
         ->first();
         return view('user.order')->with(['data'=>$data,'amount'=>$amount]);
+    }
+    public function order(Request $request,$id){
+        $check = $request->all()['check'];
+      if($check === "1"){
+        $data = $this->requestOrderOldData($request, $id);
+      }else{
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+
+        ]);
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data = $this->requestOrderNewData($request, $id);
+      }
+      Order::create($data);
+      return view('user.thankYou');
+    }
+
+    //Order new Array Function
+    private function requestOrderNewData(Request $request,$id){
+        return $arrNew = [
+            'customer_id'=> Auth()->user()->id,
+            'name' => $request->name,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'address'=>$request->address,
+            'pizza_id'=>$id,
+            'amount'=>$request->amount,
+            'payment_id'=>$request->radio,
+
+        ];
+    }
+    //Order old Array Function
+    private function requestOrderOldData(Request $request,$id){
+        return $arrOld = [
+            'customer_id'=> Auth()->user()->id,
+            'name' =>Auth()->user()->name,
+            'email'=>Auth()->user()->email,
+            'phone'=>Auth()->user()->phone,
+            'address'=>Auth()->user()->address,
+            'pizza_id'=>$id,
+            'amount'=>$request->amount,
+            'payment_id'=>$request->radio,
+
+        ];
     }
     //Related Product function
     private function relatedData(){

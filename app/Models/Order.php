@@ -11,7 +11,12 @@ class Order extends Model
     protected $fillable = [
         'order_id',
         'customer_id',
+        'name',
+        'email',
+        'phone',
+        'address',
         'pizza_id',
+        'amount',
         'payment_id',
         'order_time',
     ];

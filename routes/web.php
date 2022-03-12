@@ -66,13 +66,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('userSearch', 'ListController@userSearch')->name('admin#userSearch');
     Route::get('adminSearch', 'ListController@adminSearch')->name('admin#adminSearch');
 
-    Route::get('order', 'CategoryController@order')->name('admin#order');
-    Route::get('carrier', 'CategoryController@carrier')->name('admin#carrier');
-
     //User Contact
     Route::get('contact', 'ContactController@contact')->name('admin#contact');
     Route::get('contact/search', 'ContactController@searchContact')->name('admin#searchContact');
 
+    //Admin Order List
+    Route::get('order', 'OrderController@order')->name('admin#order');
 });
 Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
     //User Route Group
@@ -82,13 +81,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
     Route::get('categoryPizzaList/{id}', 'UserController@categoryPizzaList')->name('user#categoryPizzaList');
     Route::get('search/all', 'UserController@allSearch')->name('user#allSearch');
     Route::get('productDetail/{id}','UserController@productDetail')->name('user#productDetail');
-    Route::post('orderStore/{id}','UserController@orderStore')->name('user#orderStore');
+    Route::get('confirmOrder/{id}','UserController@confirmOrder')->name('user#confirmOrder');
+    Route::post('order/{id}','UserController@order')->name('user#order');
 
 });
-
-// Route::get('detail/{id}', 'UserController@detail')->name('user#detail');
-//     Route::post('sendContact', 'UserController@sendContact')->name('user#sendContact');
-//     Route::get('categoryPizzaList/{id}', 'UserController@categoryPizzaList')->name('user#categoryPizzaList');
-//     Route::get('allPizzaList', 'UserController@allPizzaList')->name('user#allPizzaList');
-//     Route::get('search/all', 'UserController@allSearch')->name('user#allSearch');
-//     Route::get('search/minMax', 'UserController@minMaxSearch')->name('user#minMaxSearch');

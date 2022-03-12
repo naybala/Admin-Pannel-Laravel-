@@ -49,7 +49,7 @@
 
                     <p class="d-inline text-primary">Amount -
                     <div class="container d-inline">
-                        <form action="{{ route('user#orderStore', $productDetail->pizza_id) }}" method="post"
+                        <form action="{{ route('user#confirmOrder', $productDetail->pizza_id) }}" method="get"
                             class="d-inline">
                             @csrf
                             <button class="btn-sm btn-danger btnCon decrease" type="button">-</button>

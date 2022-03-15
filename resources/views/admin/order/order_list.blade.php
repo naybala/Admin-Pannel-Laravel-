@@ -1,6 +1,5 @@
 @extends('admin.layout.app')
 @section('content')
-    <link rel="stylesheet" href="{{ asset('main-page/css/orderSearch.css') }}">
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Main content -->
@@ -11,14 +10,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Order Table</h3>
-
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 150px;">
                                         <input type="text" name="table_search" class="form-control float-right"
                                             placeholder="Search">
-                                        @foreach ($data as $item)
-                                            <input type="hidden" value="{{ $item->name }}" id="hello">
-                                        @endforeach
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-default" name="orderSearch">
                                                 <i class="fas fa-search"></i>
@@ -66,21 +61,19 @@
                                                 @else
                                                     <td>Online Payment</td>
                                                 @endif
-                                                <td>{{ ($item->price - $item->discount_price) * $item->amount }} mmk
-                                                </td>
+                                                <td>{{ ($item->price - $item->discount_price) * $item->amount }} mmk</td>
                                                 @if ($item->buy_one_get_one_status == 1)
-                                                    {{ $waitingTime = $item->waiting_time * $item->amount * 2 }}
-                                                    @if ($waitingTime > 60)
-                                                        <td>{{ floor($waitingTime / 60) }} hr {{ $waitingTime % 60 }}
+                                                    @if ($item->waiting_time * $item->amount * 2 > 60)
+                                                        <td>{{ floor(($item->waiting_time * $item->amount * 2) / 60) }} hr
+                                                            {{ ($item->waiting_time * $item->amount * 2) % 60 }}
                                                             min
                                                         </td>
                                                     @else
-                                                        <td>{{ $waitingTime }} min</td>
+                                                        <td>{{ $item->waiting_time * $item->amount * 2 }} min</td>
                                                     @endif
                                                 @else
                                                     <td>{{ $item->waiting_time * $item->amount }} min </td>
                                                 @endif
-
                                                 <td>
                                                     <button class="btn-sm btn-primary" id="btnConfirm">Confirm</button>
                                                 </td>

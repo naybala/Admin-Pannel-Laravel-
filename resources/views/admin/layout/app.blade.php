@@ -88,10 +88,6 @@
                         </li>
 
                         <li class="nav-item mt-1">
-                            {{-- <form action="{{ route('logout') }}" method="post">
-                                @csrf
-                                <input class='btn btn-danger' type="submit" value="Confirm">
-                            </form> --}}
                             <a href="{{ route('admin#logoutConfirm') }}">
                                 <input class='ms-3 rounded' type="button" value="Logout">
                             </a>
@@ -100,7 +96,6 @@
                 </nav>
             </div>
         </aside>
-
         @yield('content')
         </section>
     </div>

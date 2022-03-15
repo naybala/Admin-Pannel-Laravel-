@@ -53,7 +53,9 @@
                                                 <td>{{ $item->address }}</td>
                                                 <td>{{ $item->pizza_name }}</td>
                                                 @if ($item->buy_one_get_one_status == 1)
-                                                    <td>{{ $item->amount }}+{{ $item->amount }} </td>
+                                                    <td>{{ $item->amount }}+{{ $item->amount }} <span
+                                                            class="text-danger" style="font-size: 0.6rem">promo</span>
+                                                    </td>
                                                 @else
                                                     <td>{{ $item->amount }}</td>
                                                 @endif
@@ -67,7 +69,14 @@
                                                 <td>{{ ($item->price - $item->discount_price) * $item->amount }} mmk
                                                 </td>
                                                 @if ($item->buy_one_get_one_status == 1)
-                                                    <td>{{ $item->waiting_time * $item->amount * 2 }} min </td>
+                                                    {{ $waitingTime = $item->waiting_time * $item->amount * 2 }}
+                                                    @if ($waitingTime > 60)
+                                                        <td>{{ floor($waitingTime / 60) }} hr {{ $waitingTime % 60 }}
+                                                            min
+                                                        </td>
+                                                    @else
+                                                        <td>{{ $waitingTime }} min</td>
+                                                    @endif
                                                 @else
                                                     <td>{{ $item->waiting_time * $item->amount }} min </td>
                                                 @endif

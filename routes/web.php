@@ -85,5 +85,4 @@ Route::group(['prefix' => 'user', 'namespace' => 'User','middleware'=>[UserCheck
     Route::get('productDetail/{id}','UserController@productDetail')->name('user#productDetail');
     Route::get('confirmOrder/{id}','UserController@confirmOrder')->name('user#confirmOrder');
     Route::post('order/{id}','UserController@order')->name('user#order');
-
 });

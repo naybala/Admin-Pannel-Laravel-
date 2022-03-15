@@ -32,7 +32,6 @@
                                 <table class="table table-hover text-nowrap text-center">
                                     <thead>
                                         <tr>
-                                            <th>Order ID</th>
                                             <th>Customer Name</th>
                                             <th>Email</th>
                                             <th>Phone Number</th>
@@ -40,6 +39,7 @@
                                             <th>Pizza Name</th>
                                             <th>Amount</th>
                                             <th>Payment Type</th>
+                                            <th>Total mmk</th>
                                             <th>Waiting Time</th>
                                             <th></th>
                                         </tr>
@@ -47,13 +47,16 @@
                                     <tbody>
                                         @foreach ($data as $item)
                                             <tr>
-                                                <td>{{ $item->order_id }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
                                                 <td>{{ $item->phone }}</td>
                                                 <td>{{ $item->address }}</td>
                                                 <td>{{ $item->pizza_name }}</td>
-                                                <td>{{ $item->amount }}</td>
+                                                @if ($item->buy_one_get_one_status == 1)
+                                                    <td>{{ $item->amount }}+{{ $item->amount }} </td>
+                                                @else
+                                                    <td>{{ $item->amount }}</td>
+                                                @endif
                                                 @if ($item->payment_id == 1)
                                                     <td>Cash On Deliver</td>
                                                 @elseif($item->payment_id == 2)
@@ -61,9 +64,16 @@
                                                 @else
                                                     <td>Online Payment</td>
                                                 @endif
-                                                <td>60 minutes</td>
+                                                <td>{{ ($item->price - $item->discount_price) * $item->amount }} mmk
+                                                </td>
+                                                @if ($item->buy_one_get_one_status == 1)
+                                                    <td>{{ $item->waiting_time * $item->amount * 2 }} min </td>
+                                                @else
+                                                    <td>{{ $item->waiting_time * $item->amount }} min </td>
+                                                @endif
+
                                                 <td>
-                                                    <button class="btn-sm btn-primary">Confirm</button>
+                                                    <button class="btn-sm btn-primary" id="btnConfirm">Confirm</button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -83,5 +93,4 @@
         </section>
         <!-- /.content -->
     </div>
-    <script src="{{ asset('main-page/js/orderSearch.js') }}"></script>
 @endsection

@@ -34,9 +34,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     }
 })->name('dashboard');
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware'=>[AdminCheckMiddleware::class]], function () {
     //Admin Route Group
-    Route::get('profile', 'AdminController@profile')->name('admin#profile')->middleware(AdminCheckMiddleware::class);
+    Route::get('profile', 'AdminController@profile')->name('admin#profile');//->middleware(AdminCheckMiddleware::class)
     Route::get('logoutCancel', 'AdminController@logoutCancel')->name('admin#logoutCancel');
     Route::get('logoutConfirm', 'AdminController@logoutConfirm')->name('admin#logoutConfirm');
     Route::post('updateInfo/{id}', 'AdminController@updateInfo')->name('admin#updateInfo');
@@ -75,9 +75,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     //Admin Order List
     Route::get('order', 'OrderController@order')->name('admin#order');
 });
-Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
+Route::group(['prefix' => 'user', 'namespace' => 'User','middleware'=>[UserCheckMiddleware::class]], function () {
     //User Route Group
-    Route::get('/', 'UserController@index')->name('user#index')->middleware(UserCheckMiddleware::class);
+    Route::get('/', 'UserController@index')->name('user#index');
     Route::get('logoutCancel', 'UserController@logoutCancel')->name('user#logoutCancel');
     Route::get('logoutConfirm','UserController@logoutConfirm')->name('user#logoutConfirm');
     Route::get('categoryPizzaList/{id}', 'UserController@categoryPizzaList')->name('user#categoryPizzaList');

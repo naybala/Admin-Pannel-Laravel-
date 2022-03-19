@@ -87,8 +87,6 @@ var apiCall = async () => {
             const productItemContainerToSelect = selectProduct(indexToSelect);
             productItemContainerToSelect.classList.add("selected");
         } else if (key === "Enter") {
-
-            ///Enter End 25.feb
             if (indexToSelect === -1) {
                 return;
             } else {
@@ -99,7 +97,6 @@ var apiCall = async () => {
                     }
                 }
             }
-            //End 25.feb
         } else {
             resultContainerTag.innerHTML = "";
             indexToSelect = -1;

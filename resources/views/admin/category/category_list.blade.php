@@ -29,6 +29,12 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title ml-5">
+                                    <a href="{{ route('admin#category') }}">
+                                        <button class="btn btn-sm btn-outline-dark">
+                                            All</button>
+                                    </a>
+                                </h3>
+                                <h3 class="card-title ml-5">
                                     <a href="{{ route('admin#addCategory') }}">
                                         <button class="btn btn-sm btn-outline-dark">Add Category</button>
                                     </a>
@@ -38,30 +44,25 @@
                                         Count = {{ $category_list->total() }}</button>
                                 </h3>
                                 <div class="card-tools">
-                                    <input type="text" class="form-control autoCompleteInput"
-                                        placeholder="Search Category...">
-                                    <div class="resultContainer position-absolute">
-                                        <a href=""></a>
-                                    </div>
-                                </div>
-                                {{-- <div class="card-tools">
-                                    <form action="{{ route('admin#searchCategory') }}" method="get">
+                                    <form autocomplete="off" action="{{ route('admin#searchCategory') }}" method="get">
                                         @csrf
                                         <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="tableSearch"
+                                            <input type="text" name="tableSearch" onkeypress="return event.keyCode != 13;"
                                                 class="form-control float-right autoCompleteInput" placeholder="Search">
-
+                                            <input type="hidden" name="search" class="result">
+                                            <button type="submit" class="btnSubmit" hidden></button>
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-default">
                                                     <i class="fas fa-search"></i>
                                                 </button>
                                             </div>
+                                        </div>
+                                        <div class="resultContainer position-absolute mt-2">
 
                                         </div>
-                                        <div class=resultContainer></div>
                                     </form>
 
-                                </div> --}}
+                                </div>
 
                             </div>
                         </div>

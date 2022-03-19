@@ -88,20 +88,37 @@ class CategoryController extends Controller
     //search Category----------------------------------------------------------------------------
     public function searchCategory(Request $request)
     {
-        if($request->all()['tableSearch']!= null){
+        $searchDataFormAutoComplete = $request->all()['search'];
+        $searchDataFormForm= $request->all()['tableSearch'];
+        if(strlen($searchDataFormAutoComplete) >= strlen($searchDataFormForm)){
+            if($request->all()['search']!= null){
+                $data = Category::where('category_name', 'like', '%' . $request->search . '%')->paginate(5);
+                $data->appends($request->all());
+                $data1 = count($data);
+
+                }else{
+                $data = Category::where('category_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
+                $data1 = 0;
+                }
+            // dd($data1,$data);
+                return view('admin.category.category_list')->with(['category_list'=>$data,'category1'=>$data1]);
+        }else{
+             if($request->all()['tableSearch']!= null){
 
             $data = Category::where('category_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
             $data->appends($request->all());
             $data1 = count($data);
 
-        }else{
+            }else{
 
             $data = Category::where('category_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
             $data1 = 0;
 
-        }
+            }
         // dd($data1,$data);
-        return view('admin.category.category_list')->with(['category_list'=>$data,'category1'=>$data1]);
+            return view('admin.category.category_list')->with(['category_list'=>$data,'category1'=>$data1]);
+        }
+
     }
 
     //Category Item

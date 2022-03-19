@@ -1,5 +1,7 @@
 const autoCompleteInputTag = document.querySelector(".autoCompleteInput", [0]);
 const resultContainerTag = document.querySelector(".resultContainer", [0]);
+const result = document.querySelector(".result", [0]);
+const btnSubmit = document.querySelector(".btnSubmit", [0]);
 var apiCall = async () => {
     const response = await fetch("http://127.0.0.1:8000/api/categrory/list",
         {
@@ -93,7 +95,9 @@ var apiCall = async () => {
                 const productIdToSelect = filteredProducts[indexToSelect].category_id.toString();
                 for (let j = 0; j < jsonResponse.length; j++) {
                     if (productIdToSelect == jsonResponse[j].category_id) {
-                        console.log(jsonResponse[j].category_name);
+                        // console.log(jsonResponse[j].category_name);
+                        result.value = jsonResponse[j].category_name;
+                        btnSubmit.click();
                     }
                 }
             }
@@ -109,6 +113,7 @@ var apiCall = async () => {
             productIdToSelect
         );
         productItemContainerToSelect.style.backgroundColor = "#237BFF";
+        productItemContainerToSelect.style.borderRadius = "0.5rem";
         productItemContainerToSelect.firstChild.style.color = "white";
         return productItemContainerToSelect;
     };

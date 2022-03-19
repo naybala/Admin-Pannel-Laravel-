@@ -1,8 +1,8 @@
 
 .resultContainer {
     background-color: #fff;
-    width: 205px;
-    border-radius: 0.5rem;
+    width: 155px;
+    border-radius: 1rem;
   }
 .productItemContainer {
     display: flex;

@@ -40,7 +40,9 @@
                                 <div class="card-tools">
                                     <input type="text" class="form-control autoCompleteInput"
                                         placeholder="Search Category...">
-                                    <div class="resultContainer position-absolute"></div>
+                                    <div class="resultContainer position-absolute">
+                                        <a href=""></a>
+                                    </div>
                                 </div>
                                 {{-- <div class="card-tools">
                                     <form action="{{ route('admin#searchCategory') }}" method="get">

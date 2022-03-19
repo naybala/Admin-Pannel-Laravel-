@@ -1,8 +1,8 @@
 @extends('admin.layout.app')
-
 @section('content')
-    <div class="content-wrapper">
+    <link rel="stylesheet" href="{{ asset('main-page/css/categorySearch.css') }}">
 
+    <div class="content-wrapper">
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
@@ -33,23 +33,34 @@
                                         <button class="btn btn-sm btn-outline-dark">Add Category</button>
                                     </a>
                                 </h3>
-                                <h3 class="card-title ml-5">
+                                <h3 class="card-title ml-5 me-5">
                                     <button class="btn btn-sm btn-outline-dark">Total
                                         Count = {{ $category_list->total() }}</button>
                                 </h3>
                                 <div class="card-tools">
+                                    <input type="text" class="form-control autoCompleteInput"
+                                        placeholder="Search Category...">
+                                    <div class="resultContainer position-absolute"></div>
+                                </div>
+                                {{-- <div class="card-tools">
                                     <form action="{{ route('admin#searchCategory') }}" method="get">
                                         @csrf
                                         <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="tableSearch" class="form-control float-right"
-                                                placeholder="Search">
+                                            <input type="text" name="tableSearch"
+                                                class="form-control float-right autoCompleteInput" placeholder="Search">
+
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-default">
                                                     <i class="fas fa-search"></i>
                                                 </button>
                                             </div>
+
+                                        </div>
+                                        <div class=resultContainer></div>
                                     </form>
-                                </div>
+
+                                </div> --}}
+
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -117,4 +128,5 @@
     </section>
     <!-- /.content -->
     </div>
+    <script src="{{ asset('main-page/js/categoryAutoCompleteSearch.js') }}"></script>
 @endsection

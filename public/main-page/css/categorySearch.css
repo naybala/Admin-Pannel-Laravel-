@@ -1,0 +1,25 @@
+
+.resultContainer {
+    background-color: #fff;
+    width: 205px;
+    border-radius: 0.5rem;
+  }
+.productItemContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    height: 50px;
+    border-bottom: 1px solid lightgray;
+}
+
+
+.productId {
+    font-size: 14px;
+    width: auto;
+  }
+.productName {
+    font-size: 14px;
+    width: 80%;
+}

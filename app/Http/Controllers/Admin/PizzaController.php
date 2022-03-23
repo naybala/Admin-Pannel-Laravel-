@@ -155,16 +155,50 @@ class PizzaController extends Controller
     //Search Pizza List
     public function searchPizza(Request $request)
     {
-        if($request->all()['tableSearch']!= null){
-                $data = Pizza::where('pizza_name', 'like', '%' . $request->tableSearch . '%')
-                ->paginate(5);
+
+        $searchDataFormAutoComplete = $request->all()['search'];
+        $searchDataFormForm= $request->all()['tableSearch'];
+        if(strlen($searchDataFormAutoComplete) >= strlen($searchDataFormForm)){
+            if($request->all()['search']!= null){
+                $data = Pizza::where('pizza_name', 'like', '%' . $request->search . '%')->paginate(5);
                 $data->appends($request->all());
                 $data1 = count($data);
+
+                }else{
+                $data = Pizza::where('pizza_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
+                $data1 = 0;
+                }
+                $categoryData = Category::get();
+            // dd($data1,$data);
+                return view('admin.pizza.pizza_list')->with(['pizza'=>$data,'pizza1'=>$data1, 'category' => $categoryData]);
         }else{
-            $data1 = 0;
+             if($request->all()['tableSearch']!= null){
+
             $data = Pizza::where('pizza_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
+            $data->appends($request->all());
+            $data1 = count($data);
+
+            }else{
+
+            $data = Pizza::where('pizza_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
+            $data1 = 0;
+
+            }
+            $categoryData = Category::get();
+
+            return view('admin.pizza.pizza_list')->with(['pizza'=>$data,'pizza1'=>$data1, 'category' => $categoryData]);
         }
-        $categoryData = Category::get();
-        return view('admin.pizza.pizza_list')->with(['pizza' => $data, 'pizza1' => $data1, 'category' => $categoryData]);
+
+        // if($request->all()['tableSearch']!= null){
+        //         $data = Pizza::where('pizza_name', 'like', '%' . $request->tableSearch . '%')
+        //         ->paginate(5);
+        //         $data->appends($request->all());
+        //         $data1 = count($data);
+        // }else{
+        //     $data1 = 0;
+        //     $data = Pizza::where('pizza_name', 'like', '%' . $request->tableSearch . '%')->paginate(5);
+        // }
+        // $categoryData = Category::get();
+        // return view('admin.pizza.pizza_list')->with(['pizza' => $data, 'pizza1' => $data1, 'category' => $categoryData]);
     }
 }

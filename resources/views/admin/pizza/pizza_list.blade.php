@@ -1,9 +1,8 @@
 @extends('admin.layout.app')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('main-page/css/pizzaSearch.css') }}">
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-
-
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
@@ -30,6 +29,12 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title ml-5">
+                                    <a href="{{ route('admin#pizza') }}">
+                                        <button class="btn btn-sm btn-outline-dark">
+                                            All Pizzas</button>
+                                    </a>
+                                </h3>
+                                <h3 class="card-title ml-5">
                                     <a href="{{ route('admin#addPizza') }}">
                                         <button class="btn btn-sm btn-outline-dark">Add Pizza</button>
                                     </a>
@@ -38,23 +43,27 @@
                                     <button class="btn btn-sm btn-outline-dark">Total
                                         Count = {{ $pizza->total() }}</button>
                                 </h3>
-
                                 <div class="card-tools">
-                                    <form action="{{ route('admin#searchPizza') }}" method="get">
+                                    <form autocomplete="off" action="{{ route('admin#searchPizza') }}" method="get">
                                         @csrf
                                         <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="tableSearch" class="form-control float-right"
-                                                placeholder="Search">
-
+                                            <input type="text" name="tableSearch"
+                                                class="form-control float-right autoCompleteInput" placeholder="Search">
+                                            {{-- onkeypress="return event.keyCode != 13;" Prevent Enter Action --}}
+                                            <input type="hidden" name="search" class="result">
+                                            <button type="submit" class="btnSubmit" hidden></button>
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-default">
                                                     <i class="fas fa-search"></i>
                                                 </button>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                        <div class="resultContainer position-absolute mt-2">
 
+                                        </div>
+                                    </form>
+
+                                </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
@@ -151,4 +160,5 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <script src="{{ asset('main-page/js/pizzaAutoCompleteSearch.js') }}"></script>
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Pizza;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
@@ -24,4 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('categrory/list',function(){
     $category = Category::get();
     return Response::json($category);
+});
+
+Route::get('pizza/list',function(){
+    $pizza = Pizza::get();
+    return Response::json($pizza);
 });

@@ -21,6 +21,7 @@
     padding: 50px;
     z-index: 101;
 }
+
 #selectedImage{
     max-height: 100%;
     border-radius: 1rem;

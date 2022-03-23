@@ -47,8 +47,9 @@
                                     <form autocomplete="off" action="{{ route('admin#searchCategory') }}" method="get">
                                         @csrf
                                         <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="tableSearch" onkeypress="return event.keyCode != 13;"
+                                            <input type="text" name="tableSearch"
                                                 class="form-control float-right autoCompleteInput" placeholder="Search">
+                                            {{-- onkeypress="return event.keyCode != 13;" Prevent Enter Action --}}
                                             <input type="hidden" name="search" class="result">
                                             <button type="submit" class="btnSubmit" hidden></button>
                                             <div class="input-group-append">

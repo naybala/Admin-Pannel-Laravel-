@@ -50,7 +50,26 @@ class UserController extends Controller
      //All Search
     public function allSearch(Request $request)
     {
-       if($request->all()['search']!= null){
+        $searchDataFormAutoComplete = $request->all()['searchData'];
+        $searchDataFormForm= $request->all()['search'];
+        if(strlen($searchDataFormAutoComplete) >= strlen($searchDataFormForm)){
+            if($request->all()['searchData']!= null){
+                $data = Pizza::where('pizza_name', 'like', '%' . $request->searchData . '%')
+                            ->leftJoin('categories','pizzas.category_id','=','categories.category_id')
+                            ->where('publish_status',1)
+                            ->orderBy('pizza_name', 'asc')
+                            ->paginate(6);
+                            $data->appends($request->all());
+                            $countData = count($data);
+                         }else{
+                            $countData = 0;
+                            $data = Pizza::where('pizza_name', 'like', '%' . $request->search . '%')->paginate(6);
+
+                            }
+                            $relatedProduct = $this->relatedData();
+                            return view('user.pizza.pizzaListSearch')->with(['pizza' => $data,'countData'=>$countData,'relatedProduct'=>$relatedProduct]);
+        }else{
+            if($request->all()['search']!= null){
                 $data = Pizza::where('pizza_name', 'like', '%' . $request->search . '%')
                 ->leftJoin('categories','pizzas.category_id','=','categories.category_id')
                 ->where('publish_status',1)
@@ -58,13 +77,17 @@ class UserController extends Controller
                 ->paginate(6);
                 $data->appends($request->all());
                 $countData = count($data);
-        }else{
-            $countData = 0;
-            $data = Pizza::where('pizza_name', 'like', '%' . $request->search . '%')->paginate(6);
-        }
-         $relatedProduct = $this->relatedData();
-         return view('user.pizza.pizzaListSearch')->with(['pizza' => $data,'countData'=>$countData,'relatedProduct'=>$relatedProduct]);
+            $relatedProduct = $this->relatedData();
+            return view('user.pizza.pizzaListSearch')->with(['pizza' => $data,'countData'=>$countData,'relatedProduct'=>$relatedProduct]);
 
+            }else{
+                $countData = 0;
+                $data = Pizza::where('pizza_name', 'like', '%' . $request->search . '%')->paginate(6);
+
+            }
+            $relatedProduct = $this->relatedData();
+            return view('user.pizza.pizzaListSearch')->with(['pizza' => $data,'countData'=>$countData,'relatedProduct'=>$relatedProduct]);
+        }
     }
     //Product Details
     public function productDetail($id){

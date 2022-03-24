@@ -23,7 +23,7 @@
             @csrf
             <div class="card shadow">
                 <div class="row p-2">
-                    <div class="col-md-5 ms-2">
+                    <div class="col-md-5 ms-1 me-1">
                         <h5 class="text-primary"> Your Information</h5>
                         <label for="inputName" class="col-sm-2 col-form-label">Name
                         </label>
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <br><br>
-                    <div class="col-md-5 ms-3">
+                    <div class="col-md-5 ms-1 me-1">
                         <h5 class="text-primary "> Order Pizza Details</h5>
                         <br>
                         <div class="row mt-5">
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-grid gap-4 me-5 px-5 mb-3">
+                <div class="d-grid gap-4  px-5 mb-3">
                     <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
             </div>

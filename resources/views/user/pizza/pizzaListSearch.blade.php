@@ -1,5 +1,6 @@
 @extends('user.layout.appUser')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('customer/css/viewImage.css') }}">
     <div class="container-fluid col-md-9 mt-5">
         <h2>Search Data</h2>
         <div class="row">
@@ -16,7 +17,11 @@
                                     @else
                                         <p class="text-white bg-dark d-inline rounded p-1">No Promo</p>
                                     @endif
-                                    <img class="img-fluid" src="{{ asset('images/' . $item->image) }}" alt="">
+                                    <img class="img-fluid galleryImage" src="{{ asset('images/' . $item->image) }}" alt=""
+                                        id="gallery">
+                                </div>
+                                <div class="div" id="popup">
+                                    <img src="" alt="" id="selectedImage">
                                 </div>
                                 <div class="col-md-6">
                                     <span class="fs-5">Name - {{ $item->pizza_name }}</span>
@@ -61,7 +66,11 @@
                                 @else
                                     <p class="text-white bg-dark d-inline rounded p-1">No Promo</p>
                                 @endif
-                                <img class="img-fluid" src="{{ asset('images/' . $item->image) }}" alt="">
+                                <img class="img-fluid galleryImage" src="{{ asset('images/' . $item->image) }}" alt=""
+                                    id="gallery">
+                            </div>
+                            <div class="div" id="popup">
+                                <img src="" alt="" id="selectedImage">
                             </div>
                             <div class="col-md-6">
                                 <span class="fs-5">Name - {{ $item->pizza_name }}</span>
@@ -92,4 +101,5 @@
         <br>
         <br>
     </div>
+    <script src="{{ asset('customer/js/viewImage.js') }}"></script>
 @endsection

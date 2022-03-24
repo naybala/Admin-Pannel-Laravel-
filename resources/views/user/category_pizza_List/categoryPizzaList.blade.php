@@ -1,5 +1,6 @@
 @extends('user.layout.appUser')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('customer/css/viewImage.css') }}">
     <div class="container-fluid col-md-9 mt-5">
         <h2>Caegories Type - {{ $categoryType->category_name }}</h2>
         <h2>Pizza List</h2>
@@ -17,7 +18,11 @@
                                     @else
                                         <p class="text-white bg-dark d-inline rounded p-1">No Promo</p>
                                     @endif
-                                    <img class="img-fluid" src="{{ asset('images/' . $item->image) }}" alt="">
+                                    <img class="img-fluid galleryImage" src="{{ asset('images/' . $item->image) }}" alt=""
+                                        id="gallery">
+                                </div>
+                                <div class="div" id="popup">
+                                    <img src="" alt="" id="selectedImage">
                                 </div>
                                 <div class="col-md-6">
                                     <span class="fs-5">Name - {{ $item->pizza_name }}</span>
@@ -48,22 +53,6 @@
         <hr>
         <br>
         <br>
-        {{-- @if ($countData == 0)
-            <h5 class="text-danger">there is no data</h5>
-        @else
-            @foreach ($categoryPizza as $item)
-                <div class="card shadow  border-0">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img class="img-fluid rounded-2" src="{{ asset('images/' . $item->image) }}" alt="" style="">
-                        </div>
-                        <div class="col-md-4">
-                            <a href="" class="fs-5 text-decoration-none text-success">
-                                <span>Name - {{ $item->pizza_name }}</span>
-                            </a>
-                        </div>
-            @endforeach
-        @endif --}}
     </div>
     <div class="container-fluid col-md-9">
         <h2>Related Products</h2>
@@ -78,7 +67,11 @@
                                 @else
                                     <p class="text-white bg-dark d-inline rounded p-1">No Promo</p>
                                 @endif
-                                <img class="img-fluid" src="{{ asset('images/' . $item->image) }}" alt="">
+                                <img class="img-fluid galleryImage" src="{{ asset('images/' . $item->image) }}" alt=""
+                                    id="gallery">
+                            </div>
+                            <div class="div" id="popup">
+                                <img src="" alt="" id="selectedImage">
                             </div>
                             <div class="col-md-6">
                                 <span class="fs-5">Name - {{ $item->pizza_name }}</span>
@@ -109,4 +102,5 @@
         <br>
         <br>
     </div>
+    <script src="{{ asset('customer/js/viewImage.js') }}"></script>
 @endsection

@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Pizza;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
@@ -30,4 +31,9 @@ Route::get('categrory/list',function(){
 Route::get('pizza/list',function(){
     $pizza = Pizza::get();
     return Response::json($pizza);
+});
+
+Route::get('user/list',function(){
+    $user = User::get();
+    return Response::json($user);
 });

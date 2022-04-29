@@ -23,17 +23,29 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('categrory/list',function(){
-    $category = Category::get();
-    return Response::json($category);
-});
+// Route::get('categrory/list',function(){
+//     $category = Category::get();
+//     return Response::json($category);
+// });
 
-Route::get('pizza/list',function(){
-    $pizza = Pizza::get();
-    return Response::json($pizza);
-});
+// Route::get('pizza/list',function(){
+//     $pizza = Pizza::get();
+//     return Response::json($pizza);
+// });
 
-Route::get('user/list',function(){
-    $user = User::get();
-    return Response::json($user);
+// Route::get('user/list',function(){
+//     $user = User::get();
+//     return Response::json($user);
+// });
+
+Route::group(["namespace" => "Api"], function(){
+    //UserList Crud
+    Route::get('user/list','UserApiController@getList');
+
+    //ProductList Crud
+    Route::get('pizza/list','ProductApiController@getList');
+
+    //CategoryList Crud
+    Route::get('category/list','CategoryApiController@getList');
+    Route::post('category/list','UserApiController@createCategory');
 });

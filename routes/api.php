@@ -47,5 +47,7 @@ Route::group(["namespace" => "Api"], function(){
 
     //CategoryList Crud
     Route::get('category/list','CategoryApiController@getList');
-    Route::post('category/list','UserApiController@createCategory');
+    Route::post('category/list','CategoryApiController@createCategory');
+    Route::put('category/list/{id}','CategoryApiController@editCategory');
+    Route::delete('category/list/{id}','CategoryApiController@deleteCategory');
 });

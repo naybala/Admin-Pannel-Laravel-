@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Response;
 
 class UserApiController extends Controller
@@ -18,10 +20,6 @@ class UserApiController extends Controller
         // return Response::json($response);
     }
 
-    public function createCategory(){
-        $data = [
 
-        ];
-    }
 
 }

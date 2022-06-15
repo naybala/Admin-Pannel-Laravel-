@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Response;
 
 class ProductApiController extends Controller
 {
+    //Get Pizza List
     public function getList(){
         $product = Pizza::get();
         return Response::json($product);

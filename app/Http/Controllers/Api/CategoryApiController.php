@@ -13,11 +13,6 @@ class CategoryApiController extends Controller
     //Get Category
     public function getList(){
         $category = Category::get();
-        // $response = [
-        //     'status' => 200 ,
-        //     'message' => 'success',
-        //     'data' => $category
-        // ];
         return Response::json($category);
     }
 

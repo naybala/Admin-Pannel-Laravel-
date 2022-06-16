@@ -44,7 +44,7 @@ Route::group(["namespace" => "Api"], function(){
 
     //ProductList Crud
     Route::get('pizza/list','ProductApiController@getList');
-
+    Route::get('pizza/list/{id}','ProductApiController@deletePizza');
     //CategoryList Crud
     Route::get('category/list','CategoryApiController@getList');
     Route::post('category/list','CategoryApiController@createCategory');

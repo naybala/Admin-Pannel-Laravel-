@@ -15,7 +15,7 @@ class ProductApiController extends Controller
     }
 
 
-    //Delete Pizza List
+    // Delete Pizza List
     public function deletePizza(Request $request){
         $response = Pizza::where('pizza_id',$request->id)->delete();
         return Response::json($response);

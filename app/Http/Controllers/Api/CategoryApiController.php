@@ -38,7 +38,6 @@ class CategoryApiController extends Controller
     //Edit Category
     public function editCategory(Request $request){
         $updateData = [
-            'category_id' => $request->id,
             'category_name' => $request->name,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

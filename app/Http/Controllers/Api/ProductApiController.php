@@ -11,8 +11,9 @@ class ProductApiController extends Controller
 {
     //Get Pizza List
     public function getList(){
-        $product = Pizza::get();
-        return Response::json($product);
+        $product = Pizza::leftJoin('categories','pizzas.category_id','=','categories.category_id')
+                    ->get();
+         return Response::json($product);
     }
 
 
